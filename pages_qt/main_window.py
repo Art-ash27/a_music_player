@@ -1,4 +1,4 @@
-# main_window.py（只展示关键修改部分）
+
 import sys
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QGridLayout,
@@ -7,8 +7,6 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QKeySequence
-
-# 👇 新增导入
 from core.music_player import Music_player
 from pages_qt.local_page import LocalMusicPage
 
@@ -20,7 +18,7 @@ class MainWindow(QWidget):
         self.resize(900, 600)
         self.setMinimumSize(700, 500)
 
-        # 👇 创建全局播放器实例（所有页面共享）
+        # 创建全局播放器实例（所有页面共享）
         self.music_player = Music_player()
 
         # 主布局...
@@ -159,7 +157,6 @@ class MainWindow(QWidget):
         event.accept()
 
 def main():
-    # 高 DPI 支持（必须在 QApplication 之前）
     if hasattr(Qt, 'AA_EnableHighDpiScaling'):
         QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     if hasattr(Qt, 'AA_UseHighDpiPixmaps'):
