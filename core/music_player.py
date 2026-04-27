@@ -2,6 +2,8 @@ import threading
 import pyaudio
 from pydub import AudioSegment
 import time
+from core.music_info import MusicInfoManager
+
 class Music_player:
     def __init__(self):
         self.audio_init = pyaudio.PyAudio()
@@ -17,6 +19,7 @@ class Music_player:
         self._now_position = 0 #定期刷新播放字节
         self.is_load = False
 
+
     def load_file(self,filepath):
         if self.is_load:
             self.current_audio = None
@@ -26,7 +29,6 @@ class Music_player:
         self._long = len(self.current_audio.raw_data)  #返回字节总数
         for i in range(10): print(self._long)  #测试 能否正常切歌
         self.is_load = True
-        self.play()
     
 
     def get_total_duration_ms(self):  #获取总长度ms

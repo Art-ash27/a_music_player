@@ -3,12 +3,14 @@ import sys
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QGridLayout,
     QShortcut, QVBoxLayout, QPushButton,
-    QLabel, QFrame, QHBoxLayout,QMessageBox
+    QLabel, QFrame, QHBoxLayout,QMessageBox,QSlider
 )
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt,QTimer
 from PyQt5.QtGui import QKeySequence
 from core.music_player import Music_player
 from pages_qt.local_page import LocalMusicPage
+
+from core.music_info import MusicInfoManager
 
 
 class MainWindow(QWidget):
@@ -17,9 +19,16 @@ class MainWindow(QWidget):
         self.setWindowTitle("Seeker播放器")
         self.resize(900, 600)
         self.setMinimumSize(700, 500)
-
+        #创建一个100ms的定时器
+        self.time_qt = QTimer(self)
+        self.time_qt.timeout.connect(self.update_fortime)
+        self.time_qt.start(100)
+            
         # 创建全局播放器实例（所有页面共享）
         self.music_player = Music_player()
+        # 准备记录文件
+        self.music_manager = MusicInfoManager()
+        
 
         # 主布局...
         self.main_layout = QGridLayout()
@@ -57,13 +66,22 @@ class MainWindow(QWidget):
         player_layout = QHBoxLayout()
         player_layout.setContentsMargins(15, 0, 15, 0)
         self.song_label = QLabel("未播放任何歌曲")
+
+        #利用滑块制作进度条
+        self.progress = QSlider()
+        self.progress.setMinimum(0)
+        self.progress.setMaximum(1000)
+        self.progress.setOrientation(Qt.Horizontal)
+        
+
         self.play_btn = QPushButton("▶")
-        self.seek_try = QPushButton("测试跳转")
+        #self.seek_try = QPushButton("测试跳转")
         self.play_btn.setEnabled(False)
         player_layout.addWidget(self.song_label)
-        player_layout.addStretch(1)
+        player_layout.addWidget(self.progress)
+        #player_layout.addStretch(1)
         player_layout.addWidget(self.play_btn)
-        player_layout.addWidget(self.seek_try)
+        #splayer_layout.addWidget(self.seek_try)
         self.player_bar.setLayout(player_layout)
 
         # 添加到网格
@@ -82,13 +100,13 @@ class MainWindow(QWidget):
 
         # 👇 连接底部播放按钮
         self.play_btn.clicked.connect(self.toggle_global_play)
-        self.seek_try.clicked.connect(self.seek_to_2min)
+        #self.seek_try.clicked.connect(self.seek_to_2min)
 
         # 播放状态
         self.global_play_state = "stopped"
 
-    def seek_to_2min(self,ms):
-        self.music_player.seek(120000)
+    #def seek_to_2min(self,ms):
+    #    self.music_player.seek(120000)
 
     def show_local_music(self):
         """切换到本地音乐页面"""
@@ -108,8 +126,11 @@ class MainWindow(QWidget):
             self.music_player.load_file(file_path)
             self.song_label.setText(f"🎵{filename}")
             self.play_btn.setEnabled(True)
-            self.global_play_state = "playing"
-            self.play_btn.setText("⏸️")
+            self.global_play_state = "stopped"
+            self.play_btn.setText("▶️")
+
+            self.music_manager.add_music(file_path=file_path,filename=filename,duration_ms=self.music_player.get_total_duration_ms())
+
         except Exception as e:
             QMessageBox.critical(self,"错误",f"无法加载音频文件:\n{str(e)}")
             self.play_btn.setEnabled(False)
@@ -155,6 +176,11 @@ class MainWindow(QWidget):
             self.music_player.stop()
             self.music_player.audio_init.terminate()
         event.accept()
+
+    #按时刷新进度条
+    def update_fortime(self):
+        self.progress.setValue(int(self.music_player.get_ratio()*1000))
+
 
 def main():
     if hasattr(Qt, 'AA_EnableHighDpiScaling'):

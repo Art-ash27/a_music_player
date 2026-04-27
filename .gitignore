@@ -156,3 +156,4 @@ Thumbs.db
 *.mp3
 *.wav
 /resource/
+*.csv
