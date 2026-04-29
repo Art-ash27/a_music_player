@@ -2,7 +2,6 @@ import threading
 import pyaudio
 from pydub import AudioSegment
 import time
-from core.music_info import MusicInfoManager
 
 class Music_player:
     def __init__(self):
@@ -65,6 +64,7 @@ class Music_player:
                     offset = self._seek_request
                     self._now_position = offset
                     self._seek_request = None
+
             if self.is_pause:
                 time.sleep(0.1)
                 continue
