@@ -102,6 +102,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+.venv/
 .env
 .venv
 env/
@@ -157,3 +158,6 @@ Thumbs.db
 *.wav
 /resource/
 *.csv
+
+# 个人学习笔记/教程, 不纳入版本管理
+/frontend_tutorial/

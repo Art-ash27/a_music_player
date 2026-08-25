@@ -164,7 +164,7 @@ class MainWindow(QWidget):
 
     def toggle_global_play(self):
         """底部播放/暂停按钮"""
-        if not self.music_player.load_file:
+        if not self.music_player.is_load:
             return
 
         if self.global_play_state == "stopped":
@@ -199,12 +199,16 @@ class MainWindow(QWidget):
     
     def closeEvent(self,event):
         if hasattr(self,'music_player'):
-            self.music_player.stop()
-            self.music_player.audio_init.terminate()
+            self.music_player.close()
         event.accept()
 
     #按时刷新进度条
     def update_fortime(self):
+        # 歌曲自然播放结束时, 复位底部播放栏状态, 方便再次播放
+        if self.music_player.is_finished:
+            self.music_player.is_finished = False
+            self.global_play_state = "stopped"
+            self.play_btn.setText("▶️")
         self.music_time.setText(f"{self.music_player.get_now_position()//60000}:{self.music_player.get_now_position()//1000%60:02d}/{self.music_player.get_total_duration_ms()//60000}:{self.music_player.get_total_duration_ms()//1000%60:02d}")
         if not self._user_dragging:
             self.progress.setValue(int(self.music_player.get_ratio()*1000))

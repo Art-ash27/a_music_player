@@ -1,0 +1,4 @@
+# 音频内核: miniaudio 自带头部解码(MP3/FLAC/WAV/OGG), 无需 ffmpeg / PortAudio
+miniaudio>=1.60
+# GUI
+PyQt5>=5.15

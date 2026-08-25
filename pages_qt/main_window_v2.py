@@ -268,14 +268,19 @@ class MainWindow(QWidget):
 
     def closeEvent(self, event):
         if hasattr(self, 'music_player'):
-            self.music_player.stop()
-            self.music_player.audio_init.terminate()
+            self.music_player.close()
         event.accept()
 
     # ════════════════════════════════════════
     #  定时刷新进度条
     # ════════════════════════════════════════
     def update_fortime(self):
+        # 歌曲自然播放结束时, 复位底部播放栏状态, 方便再次播放
+        if self.music_player.is_finished:
+            self.music_player.is_finished = False
+            self.global_play_state = "stopped"
+            self.play_btn.setText("▶")
+
         # 更新时间文字
         pos = self.music_player.get_now_position()
         dur = self.music_player.get_total_duration_ms()
