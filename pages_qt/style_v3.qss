@@ -1,0 +1,398 @@
+/* =========================================================
+   Seeker 播放器 · v3 主题
+   仅被 pages_qt/main_window_v3.py 使用，不影响 main / main_v2
+   ========================================================= */
+
+QWidget {
+    font-family: "Noto Sans CJK SC", "思源黑体 CN", "Microsoft YaHei",
+                 "PingFang SC", "Segoe UI", sans-serif;
+    color: #e8e8f2;
+    font-size: 13px;
+}
+
+/* ── 窗口底色 ───────────────────────────────────────── */
+#root {
+    background: qlineargradient(x1:0, y1:0, x2:0.8, y2:1,
+                stop:0 #15151f, stop:0.55 #171728, stop:1 #101017);
+}
+
+/* ── 左侧导航 ───────────────────────────────────────── */
+#sidebar {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                stop:0 #101018, stop:1 #14141f);
+    border-right: 1px solid #232333;
+}
+
+#brand_mark {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                stop:0 #8b5cf6, stop:1 #4fd1c5);
+    border-radius: 11px;
+    color: #ffffff;
+    font-size: 19px;
+}
+
+#brand_name {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #f2f2fa;
+}
+
+#brand_sub {
+    font-size: 9px;
+    color: #6c6c85;
+    letter-spacing: 3px;
+}
+
+#nav_section {
+    font-size: 10px;
+    color: #5f5f76;
+    letter-spacing: 2px;
+    padding: 0 0 2px 10px;
+}
+
+QPushButton#nav_btn {
+    text-align: left;
+    padding: 0 12px;
+    border: none;
+    border-left: 3px solid transparent;
+    border-radius: 9px;
+    background: transparent;
+    color: #9c9cb4;
+    font-size: 13px;
+}
+QPushButton#nav_btn:hover {
+    background: #1e1e2d;
+    color: #e8e8f2;
+}
+QPushButton#nav_btn:checked {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                stop:0 rgba(139, 92, 246, 0.20), stop:1 rgba(139, 92, 246, 0.02));
+    border-left: 3px solid #8b5cf6;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+#side_hint {
+    font-size: 10px;
+    color: #55556b;
+    padding-left: 4px;
+}
+
+/* ── 顶部标题栏 ─────────────────────────────────────── */
+#page_title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f5f5fb;
+}
+
+#page_sub {
+    font-size: 12px;
+    color: #7c7c96;
+}
+
+#count_chip {
+    background: #1e1e2e;
+    border: 1px solid #2b2b40;
+    border-radius: 11px;
+    padding: 4px 12px;
+    color: #a9a9c2;
+    font-size: 11px;
+}
+
+/* ── 首页 Hero 卡片 ─────────────────────────────────── */
+#hero {
+    border-radius: 18px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                stop:0 #2a1f4d, stop:0.5 #1f2340, stop:1 #17283a);
+    border: 1px solid #34345a;
+}
+
+#hero_title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+#hero_sub {
+    font-size: 13px;
+    color: #a9a9c8;
+}
+
+#hero_tag {
+    font-size: 11px;
+    color: #8f8fb0;
+}
+
+/* ── 通用卡片 ───────────────────────────────────────── */
+#card {
+    background: #191926;
+    border: 1px solid #262638;
+    border-radius: 14px;
+}
+
+#card_icon {
+    font-size: 18px;
+}
+
+#card_title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #e6e6f2;
+}
+
+#card_desc {
+    font-size: 11px;
+    color: #7a7a95;
+}
+
+/* ── 按钮 ───────────────────────────────────────────── */
+QPushButton#primary_btn {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                stop:0 #8b5cf6, stop:1 #6366f1);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 0 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+QPushButton#primary_btn:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                stop:0 #9d75ff, stop:1 #7c7ef7);
+}
+QPushButton#primary_btn:pressed {
+    background: #6d4ce0;
+}
+
+QPushButton#ghost_btn {
+    background: transparent;
+    color: #9c9cb8;
+    border: 1px solid #30304a;
+    border-radius: 10px;
+    padding: 0 16px;
+}
+QPushButton#ghost_btn:hover {
+    background: #1e1e2e;
+    color: #e8e8f2;
+    border-color: #3c3c58;
+}
+QPushButton#ghost_btn:pressed {
+    background: #17172a;
+}
+QPushButton#ghost_btn:disabled {
+    color: #4a4a60;
+    border-color: #242432;
+}
+
+/* ── 歌曲列表 ───────────────────────────────────────── */
+#list_hint {
+    border: 1px dashed #30304a;
+    border-radius: 16px;
+    background: rgba(30, 30, 45, 0.30);
+}
+
+#hint_icon {
+    font-size: 34px;
+}
+
+#hint_title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #d4d4e6;
+}
+
+#hint_formats {
+    font-size: 11px;
+    color: #5f5f78;
+}
+
+QListWidget#track_list {
+    background: transparent;
+    border: none;
+    outline: 0;
+    padding: 0;
+}
+QListWidget#track_list::item {
+    color: #c8c8dc;
+    border-radius: 10px;
+    padding: 0 8px;
+    margin: 2px 0;
+}
+QListWidget#track_list::item:hover {
+    background: #1e1e2e;
+    color: #ffffff;
+}
+QListWidget#track_list::item:selected {
+    background: rgba(139, 92, 246, 0.18);
+    color: #ffffff;
+}
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 8px;
+    margin: 2px;
+}
+QScrollBar::handle:vertical {
+    background: #30304a;
+    border-radius: 4px;
+    min-height: 30px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #45456a;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical,
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+    height: 0;
+}
+
+/* ── 底部播放栏 ─────────────────────────────────────── */
+#player_bar {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 #151522, stop:1 #111119);
+    border-top: 1px solid #232333;
+}
+
+#art {
+    border-radius: 12px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                stop:0 #3a2a66, stop:1 #1b3a44);
+    border: 1px solid #3a3a58;
+    color: #c4b5fd;
+    font-size: 22px;
+}
+
+#song_label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f0f0f8;
+}
+
+#song_artist {
+    font-size: 11px;
+    color: #70708a;
+}
+
+#time_label {
+    font-family: "JetBrains Maple Mono", "DejaVu Sans Mono", monospace;
+    font-size: 11px;
+    color: #8c8ca6;
+}
+
+#time_total {
+    font-family: "JetBrains Maple Mono", "DejaVu Sans Mono", monospace;
+    font-size: 11px;
+    color: #5c5c72;
+}
+
+QPushButton#ctrl_btn {
+    background: transparent;
+    border: none;
+    border-radius: 18px;
+    color: #9c9cb6;
+    font-size: 14px;
+}
+QPushButton#ctrl_btn:hover {
+    background: #22223a;
+    color: #ffffff;
+}
+QPushButton#ctrl_btn:pressed {
+    background: #1a1a2c;
+}
+QPushButton#ctrl_btn:disabled {
+    color: #3d3d52;
+    background: transparent;
+}
+
+QPushButton#play_btn {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                stop:0 #8b5cf6, stop:1 #6366f1);
+    border: none;
+    border-radius: 23px;
+    color: #ffffff;
+    font-size: 16px;
+}
+QPushButton#play_btn:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                stop:0 #a187ff, stop:1 #7f81ff);
+}
+QPushButton#play_btn:pressed {
+    background: #6247d4;
+}
+QPushButton#play_btn:disabled {
+    background: #24243a;
+    color: #4d4d66;
+}
+
+/* 进度条 */
+QSlider::groove:horizontal {
+    height: 4px;
+    background: #26263a;
+    border-radius: 2px;
+}
+QSlider::sub-page:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                stop:0 #8b5cf6, stop:1 #4fd1c5);
+    border-radius: 2px;
+}
+QSlider::add-page:horizontal {
+    background: #26263a;
+    border-radius: 2px;
+}
+QSlider::handle:horizontal {
+    width: 12px;
+    height: 12px;
+    margin: -4px 0;
+    border-radius: 6px;
+    background: #ffffff;
+    border: 2px solid #8b5cf6;
+}
+QSlider::handle:horizontal:hover {
+    border-color: #b9a6ff;
+    background: #f4f0ff;
+}
+
+/* ── 消息框 / 菜单（与整体风格统一） ────────────────── */
+QMessageBox {
+    background: #17172a;
+}
+QMessageBox QLabel {
+    color: #e8e8f2;
+}
+QMenu {
+    background: #1b1b2b;
+    border: 1px solid #2e2e46;
+    border-radius: 8px;
+    padding: 6px;
+}
+QMenu::item {
+    padding: 7px 22px;
+    border-radius: 6px;
+    color: #d4d4e6;
+}
+QMenu::item:selected {
+    background: rgba(139, 92, 246, 0.24);
+    color: #ffffff;
+}
+
+/* 拖拽文件悬停在空状态上时的高亮 */
+#list_hint[dropActive="true"] {
+    border: 1px dashed #8b5cf6;
+    background: rgba(139, 92, 246, 0.12);
+    color: #d8ccff;
+}
+
+/* 首页右侧装饰唱片 */
+#hero_disc {
+    border-radius: 79px;
+    border: 1px solid #3d3a63;
+    background: qradialgradient(cx:0.38, cy:0.32, radius:0.9, fx:0.32, fy:0.26,
+                stop:0 rgba(167, 139, 250, 0.34),
+                stop:0.55 rgba(99, 102, 241, 0.16),
+                stop:1 rgba(23, 23, 40, 0.05));
+}
+#hero_disc_note {
+    font-size: 56px;
+    color: #d9d0ff;
+}

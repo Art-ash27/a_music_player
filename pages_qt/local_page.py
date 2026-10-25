@@ -18,7 +18,7 @@ class LocalMusicPage(QWidget):
         layout = QVBoxLayout()
         layout.setContentsMargins(30, 40, 30, 40)
 
-        title = QLabel("🎵 本地音乐")
+        title = QLabel("本地音乐")
         title.setStyleSheet("font-size: 18px; font-weight: bold;")
         layout.addWidget(title)
 
